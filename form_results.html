@@ -10,27 +10,20 @@
         <h1>Results</h1>
     </header>
     <div class="container">
-        <table>
+        <table border = 1>
             <tr>
                 <th>School</th>
                 <th>Phone</th>
-                <th>Address</th>
+                <th>City</th>
+                <th>Weather</th>
             </tr>
-            <tr>
-                <td>Jill</td>
-                <td>Smith</td>
-                <td>50</td>
-            </tr>
-            <tr>
-                <td>Eve</td>
-                <td>Jackson</td>
-                <td>94</td>
-            </tr>
-            <tr>
-                <td>John</td>
-                <td>Doe</td>
-                <td>80</td>
-            </tr>
+            {% for school in schoolList %}
+                <tr>
+                {% for info in school %}
+                    <td>{{ info }}</td>
+                {% endfor %}
+                </tr>
+            {% endfor %}
         </table>
     </div>
 </body>
