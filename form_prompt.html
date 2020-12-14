@@ -17,11 +17,11 @@
         </div>
         <div class="column2">
             <div class="container">
-                <form method="get"> <!-- add action=""-->
-                    <label for="cityname">Enter a city:</label>
+                <form action = "http://localhost:5000/result" method="POST">
+                    <label for="state">Enter a state's abbreviation:</label>
                     <br>
                     <br>
-                    <input type="text" id="cityname" name="cityname">
+                    <input type="text" id="state" name="state">
                     <input type="submit" value="Submit">
                 </form>
             </div>
