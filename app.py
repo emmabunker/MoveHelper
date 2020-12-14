@@ -5,6 +5,10 @@ import json
 app = Flask(__name__)
 
 @app.route('/')
+def login():
+   return render_template('login.html')
+
+@app.route('/home')
 def prompt():
     return render_template('form_prompt.html')
 
