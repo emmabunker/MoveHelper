@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather Data | CS411</title>
+    <link rel="stylesheet" type="text/css" href="results.css">
+</head>
+<body>
+    <header>
+        <h1>Results</h1>
+    </header>
+    <div class="container">
+        <table border = 1>
+            <tr>
+                <th>School</th>
+                <th>Phone</th>
+                <th>City</th>
+                <th>Weather</th>
+            </tr>
+            {% for school in schoolList %}
+                <tr>
+                {% for info in school %}
+                    <td>{{ info }}</td>
+                {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>
