@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, g, redirect, url_for
 import requests
 import json
 from functools import wraps
-from models import db, User
+# from models import db, User
 
 app = Flask(__name__)
 
