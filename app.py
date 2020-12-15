@@ -6,23 +6,13 @@ from functools import wraps
 
 app = Flask(__name__)
 
-def login_required(f):
-    @wraps(f)
-    def decorated_function(*args, **kwargs):
-        if g.user is None:
-            return redirect(url_for('login', next=request.url))
-        return f(*args, **kwargs)
-    return decorated_function
-
-
 @app.route('/')
-def login():
-    return render_template('login.html')
-
-@app.route('/')
-@login_required
 def prompt():
     return render_template('form_prompt.html')
+
+@app.route('/login')
+def login():
+    return render_template('login.html')
 
 @app.route('/result',methods = ['POST', 'GET'])
 def result():
