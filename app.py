@@ -1,10 +1,25 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, g, redirect, url_for
 import requests
 import json
+from functools import wraps
 
 app = Flask(__name__)
 
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if g.user is None:
+            return redirect(url_for('login', next=request.url))
+        return f(*args, **kwargs)
+    return decorated_function
+
+
 @app.route('/')
+def prompt():
+    return render_template('login.html')
+
+@app.route('/home')
+@login_required
 def prompt():
     return render_template('form_prompt.html')
 
@@ -33,8 +48,9 @@ def result():
           weather_data = json.loads(data)
 
           schoolList[i] += [weather_data["weather"][0]["main"]]
-      
+      print(schoolList)
       return render_template('form_results.html', schoolList = schoolList)
-    
+print(result())
+
 if __name__ == '__main__':
     app.run(debug = True)
