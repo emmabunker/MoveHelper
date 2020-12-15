@@ -2,9 +2,21 @@ from flask import Flask, render_template, request, g, redirect, url_for
 import requests
 import json
 from functools import wraps
-
+from models import db, User
 
 app = Flask(__name__)
+
+POSTGRES = {
+ 'user': 'vfpmovqqlnojta',
+ 'pw': '4f346b25583f30f841dee73e47200674358a383a973d43bffaee651631ef0fae',
+ 'db': 'd7bqpqkugcvlu4',
+ 'host': 'ec2-54-211-238-131.compute-1.amazonaws.com',
+ 'port': '5432',
+}
+app.config['DEBUG'] = True
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://%(user)s:\
+%(pw)s@%(host)s:%(port)s/%(db)s' % POSTGRES
+db.init_app(app)
 
 @app.route('/')
 def prompt():
@@ -12,6 +24,14 @@ def prompt():
 
 @app.route('/login')
 def login():
+    return render_template('login.html')
+
+@app.route('/register', methods=['POST', 'GET'])
+def register():
+    if request.form:
+        user = User(firstname=request.form.get("firstname"), lastname=request.form.get("lastname"),email=request.form.get("email"))
+        db.session.add(user)
+        db.session.commit()
     return render_template('login.html')
 
 @app.route('/result',methods = ['POST', 'GET'])

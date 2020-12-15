@@ -1,18 +1,28 @@
-from flask import Flask
-from sqlalchemy import DDL, event
-from flask.ext.login import LoginManager, UserMixin
-from flask.ext.sqlalchemy import SQLAlchemy
+""" code modified from https://kanchanardj.medium.com/how-to-add-data-from-flask-to-postgresql-in-windows-2-77af756d017f """
 
-app = Flask(__name__)
+from flask_sqlalchemy import SQLAlchemy
+import datetime
 
-app.config['SECRET_KEY'] = 'secret value'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
-app.config['OAUTH_CREDENTIALS'] = {
-   'facebook': {
-       'id': '143303334215278',
-       'secret': 'eca5d89aed8b90604734d412ae76b485'
-   }
-}
+db = SQLAlchemy()
 
-db = SQLAlchemy(app)
-login_manager = LoginManager(app)
+class BaseModel(db.Model):
+    __abstract__ = True
+
+def __init__(self, *args):
+        super().__init__(*args)
+
+def __repr__(self):
+        return '%s(%s)' % (self.__class__.__name__, {
+            column: value
+            for column, value in self._to_dict().items()
+        })
+
+class User(db.Model):
+    __tablename__ = 'user'
+    firstname = db.Column(db.Integer, primary_key=True)
+    lastname = db.Column(db.String(80), unique=True)
+    email = db.Column(db.String(80), unique=True)
+def __init__(self, firstname, lastname, email):
+        self.firstname = firstname
+        self.lastname = lastname
+        self.email = email
