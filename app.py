@@ -14,8 +14,7 @@ POSTGRES = {
  'port': '5432',
 }
 app.config['DEBUG'] = True
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://%(user)s:\
-%(pw)s@%(host)s:%(port)s/%(db)s' % POSTGRES
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://vfpmovqqlnojta:4f346b25583f30f841dee73e47200674358a383a973d43bffaee651631ef0fae@ec2-54-211-238-131.compute-1.amazonaws.com:5432/d7bqpqkugcvlu4' % POSTGRES
 db.init_app(app)
 
 @app.route('/')
