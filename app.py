@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, g, redirect, url_for
-import requests
+#import requests
 import json
 from functools import wraps
 
@@ -15,7 +15,7 @@ def login_required(f):
 
 
 @app.route('/')
-def prompt():
+def login():
     return render_template('login.html')
 
 @app.route('/home')
@@ -48,9 +48,9 @@ def result():
           weather_data = json.loads(data)
 
           schoolList[i] += [weather_data["weather"][0]["main"]]
-      print(schoolList)
+
       return render_template('form_results.html', schoolList = schoolList)
-print(result())
+
 
 if __name__ == '__main__':
     app.run(debug = True)
