@@ -1,1 +1,1 @@
-# emmabunker.github.io
+This is the project of team #15, and the team consists of Emma Bunker, Simon Angel, Ray Cheng, Michelle Chan, Johanne Antoine, and Bart Considine. This is the second repository we have made for this project, but this is the final one. That is why a different repo was turned in early on in the project process. 
